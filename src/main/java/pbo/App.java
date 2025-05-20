@@ -1,69 +1,50 @@
-package pbo;
-
 import java.util.*;
-import javax.persistence.*;
-import pbo.model.*;
+import pbo.DrivApp;    
 
-/**
- *
- * 12S23022 P. Santa Hillary Sitorus
- * 12S23034 Pariama Valentino Sihombing
- * 
- */
 public class App {
+    public static void main(String[] args) {
 
-  private static EntityManagerFactory factory;
-  private static EntityManager entityManager;
+        DrivApp.initializeEntityManager();
+        DrivApp.cleanTableStudent();
+        DrivApp.cleanTableCourse();
+        DrivApp.cleanTableEnrollment();
+        String str;
 
-  public static void main(String[] args) {
-    factory = Persistence.createEntityManagerFactory("study_plan_pu");
-    entityManager = factory.createEntityManager();
-    drivApp.initializeEntityManager();
-    drivApp.cleanTableStudent();
-    drivApp.cleanTableCourse();
-    drivApp.cleanTableEnrollment();
+        Scanner scanner = new Scanner(System.in);
 
-    String str;
+        while (true) {
+            str = scanner.nextLine();
 
-    Scanner scanner = new Scanner(System.in);
+            if (str.equals("---")) {
+                break;
+            } else {
+                String split[] = str.split("#");
 
-    while (true) {
-      str = scanner.nextLine();
-
-      if (str.equals("---")) {
-        break;
-      } else {
-        String split[] = str.split("#");
-
-        switch (split[0]) {
-          case "student-add":
-            drivApp.CreateStudent(split[1], split[2], split[3]);
-            break;
-          case "student-show-all":
-            drivApp.ShowStudent();
-            break;
-          case "course-add":
-            drivApp.createCourse(split[1], split[2], Integer.parseInt(split[3]), Integer.parseInt(split[4]));
-            break;
-          case "course-show-all":   //bagian dhino
-            drivApp.ShowCourse();
-            break;
-          // enroll
-          case "enroll":
-            drivApp.createEnroll(split[1], split[2]);
-            break;
-          case "student-show":
-            drivApp.ShowStudentDetail(split[1]);
-
-            break;
-
-          default:
-            break;
+                switch (split[0]) {
+                    case "student-add":
+                        DrivApp.CreateStudent(split[1], split[2], split[3]);
+                        break;
+                    case "student-show-all":
+                        DrivApp.ShowStudent();
+                        break;
+                    case "course-add":
+                        DrivApp.createCourse(split[1], split[2], Integer.parseInt(split[3]), Integer.parseInt(split[4]));
+                        break;
+                    case "course-show-all":
+                        DrivApp.ShowCourse();
+                        break;
+                    // enroll
+                    case "enroll":
+                        DrivApp.createEnroll(split[1], split[2]);
+                        break;
+                    case "student-show":
+                        DrivApp.ShowStudentDetail(split[1]);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
-
-      }
-
+         scanner.close();
     }
-
-  }
 }
