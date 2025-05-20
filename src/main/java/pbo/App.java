@@ -1,7 +1,8 @@
+package pbo;
+
 import java.util.*;
 
-import pbo.model.DrivApp;    
-
+import pbo.model.DrivApp;
 public class App {
     public static void main(String[] args) {
 
@@ -34,7 +35,6 @@ public class App {
                     case "course-show-all":
                         DrivApp.ShowCourse();
                         break;
-                    // enroll
                     case "enroll":
                         DrivApp.createEnroll(split[1], split[2]);
                         break;
