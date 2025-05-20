@@ -1,5 +1,6 @@
 import java.util.*;
-import pbo.DrivApp;    
+
+import pbo.model.DrivApp;    
 
 public class App {
     public static void main(String[] args) {
@@ -45,6 +46,6 @@ public class App {
                 }
             }
         }
-         scanner.close();
+       scanner.close();
     }
 }
